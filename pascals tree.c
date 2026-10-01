@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> triangle;
+        
+        for (int i = 0; i < numRows; ++i) {
+            // Create a row of size (i + 1) filled with 1s
+            vector<int> row(i + 1, 1);
+            
+            // Calculate intermediate values between the first and last element
+            for (int j = 1; j < i; ++j) {
+                row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+            }
+            
+            // Push the completed row into our main triangle container
+            triangle.push_back(row);
+        }
+        
+        return triangle;
+    }
+};
